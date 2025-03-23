@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tsukiyomi-do</title>
+</head>
+<body>
+    <main>
+        <div class="header">
+            <h1>Tsukiyomi-do</h1>
+            <p>a webtoon reader built with ❤️</p>
+            <pre id="version"></pre>
+        </div>
+        <a href="#" class="box" id="selector" data-width="270" data-height="200">
+            <h1>📥</h1>
+            <p>please select a folder contains images <strong>(only select one chapter)</strong></p>
+        </a>
+        <p>
+            maintaned by <a href="#" onclick="goTo('https://nya.fan')">nya.fan</a>
+        </p>
+    </main>
+
+    <script>
+        const { ipcRenderer, shell } = require("electron")
+
+        async function goTo(uri) {
+            return await shell.openExternal(uri)
+        }
+
+        document.querySelector("#selector").addEventListener("click", () => {
+            ipcRenderer.send("chapterSelection")
+        })
+
+        ipcRenderer.send("appVersion")
+        ipcRenderer.on("appVersion", (event, ver) => document.querySelector("#version").textContent = "v" + ver)
+    </script>
+</body>
+</html>

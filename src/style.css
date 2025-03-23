@@ -1,0 +1,114 @@
+:root {
+    --accent: #e09ebb;
+}
+
+*, html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: rgb(16, 16, 16);
+    color: silver;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    min-height: 100vh;
+}
+
+main div {
+    text-align: center;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    opacity: .7;
+    transition: .2s all ease;
+}
+
+a:hover {
+    opacity: .8;
+}
+
+a:focus, a:active {
+    opacity: .9;
+}
+
+box, .box {
+    width: attr(data-width px, auto);
+    height: attr(data-height px, auto);
+    padding: 35px;
+    background-color: transparent;
+    border: 15px dashed silver;
+    color: silver !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 15px;
+    transition: .2s all ease;
+}
+
+a.box:hover {
+    background-color: rgba(255, 255, 255, .05);
+}
+
+.container {
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#images {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+}
+
+#images img {
+    min-width: 50%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+footer {
+    display: grid;
+    text-align: center;
+    gap: 1ch;
+    opacity: .8;
+}
+
+nav {
+    position: fixed;
+    bottom: 0;
+    height: 5px;
+    width: 100%;
+    background-color: white;
+    z-index: 100;
+}
+
+nav::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    height: 100%;
+    width: attr(data-progress vw);
+    background-color: var(--accent);
+}

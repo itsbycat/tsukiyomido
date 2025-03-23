@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tsukiyomi-do</title>
+</head>
+<body>
+    <div class="container">
+        <p id="title"></p>
+        <div id="images"></div>
+        <footer></footer>
+        <a href="#" onclick="ipcRenderer.send('homePage')">go back</a>
+        <a href="#title">back to top</a>
+    </div>
+
+    <nav data-progress="0"></nav>
+
+    <script>
+        const { ipcRenderer } = require("electron")
+
+        const nav = document.querySelector("nav")
+
+        window.addEventListener("scroll", () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+            const scrollTop = window.scrollY || document.documentElement.scrollTop
+            const scrollPercentage = (scrollTop / scrollHeight) * 100
+            const clampedPercentage = Math.min(100, Math.max(0, scrollPercentage))
+
+            nav.setAttribute("data-progress", clampedPercentage)
+        })
+
+        ipcRenderer.on("renderImages", (event, args) => {
+            const viewPort = document.querySelector("#images")
+            const footer = document.querySelector("footer")
+            const title = document.querySelector("#title")
+
+            title.innerHTML = "Reading " + args.pageTitle
+
+            document.title = "Tsukiyomi-do | " + args.pageTitle
+
+            viewPort.innerHTML = ""
+
+            let i = 0
+
+            args.images.forEach(img => {
+                i++
+                viewPort.innerHTML += `<img src="${img}" alt="${img}" id=${i}>`
+            })
+
+            footer.innerHTML = `<p>${i}/${args.images.length - 1}</p><p>${args.filePath}</p>`
+        })
+    </script>
+</body>
+</html>

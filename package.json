@@ -1,0 +1,58 @@
+{
+  "name": "tsukiyomi-do",
+  "version": "1.2.0",
+  "description": "comic book reader",
+  "repository": {
+    "type": "git",
+    "url": "github.com/itsbycat/tsukiyomido"
+  },
+  "license": "MIT",
+  "author": "ByCat",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package": "electron-forge packe",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "Tsukiyomi-do",
+        "asar": true,
+        "icon": "icons/icon.icns"
+      },
+      "rebuildConfig": {
+        "force": true
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "name": "tsukiyomi-do installer",
+            "icon": "icons/icon.icns",
+            "format": "UDBZ"
+          }
+        }
+      ],
+      "plugins": [
+        {
+          "name": "@electron-forge/plugin-auto-unpack-natives",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.7.0",
+    "@electron-forge/maker-dmg": "^7.7.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.7.0",
+    "electron": "^35.0.3"
+  }
+}
