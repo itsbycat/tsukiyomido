@@ -21,7 +21,7 @@ Tsukiyomido is a lightweight and efficient manga/comic reader built with Electro
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/itsbycat/tsukiyomido.git](https://www.google.com/search?q=https://github.com/itsbycat/tsukiyomido.git)
+    git clone itsbycat/tsukiyomido
     cd tsukiyomido
     ```
 
